@@ -35,8 +35,32 @@ Employee.prototype.calculateSalary = function() {
 
 
 Employee.prototype.render = function() {
-  document.write(`<h5>Name: ${this.fullName}</h5> department: ${this.department}&nbsp level:${this.level}&nbsp Salary: ${this.salary}  imageUrl:<img src= + ${this.imageUrl} + >`);
-}
+  /*document.write(`
+  <table border="1" id="table_width">
+    <tr>
+      <td>Name:</td>
+      <td>${this.fullName}</td>
+    </tr>
+    <tr>
+      <td>Department:</td>
+      <td>${this.department}</td>
+    </tr>
+    <tr>
+      <td>Level:</td>
+      <td>${this.level}</td>
+    </tr>
+    <tr>
+      <td>Salary:</td>
+      <td>${this.salary}</td>
+    </tr>
+    <tr>
+      <td>Image:</td>
+      <td><img src="${this.imageUrl}"/></td>
+    </tr>
+  </table>
+`);*/
+document.write(`<h5>Employee ID: ${this.id}</h5>\tFull Name: ${this.fullName}\tDepartment: ${this.department}\tLevel: ${this.level}`);
+};
 
 let employees = [
   new Employee(1000, 'Ghazi Samer', 'Administration', 'Senior', '', 0),
