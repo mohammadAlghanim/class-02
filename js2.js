@@ -155,7 +155,7 @@ class Employee {
     const imageUrl = event.target.imageUrl.value;
     const id = generateEmployeeId();
     
-    const employee = new Employee(fullName, department, level, "", id);
+    const employee = new Employee(fullName, department, level,imageUrl, id);
     employee.render();
   }
   
