@@ -1,78 +1,253 @@
 'use strict';
-function Employee(id, fullName, department, level, imageUrl, salary) {
-  this.id = id;
-  this.fullName = fullName;
-  this.department = department;
-  this.level = level;
-  this.imageUrl = imageUrl;
-  this.salary = salary;
+
+/*function Drink(name,ingre,imgPath,isCold,isHot){
+    this.name=name;
+    this.ingre=ingre;
+    this.imgPath=imgPath;
+    this.isCold=isCold;
+    this.isHot=isHot;
+    this.price=0;
 }
 
-// Prototype function for calculating the salary
-Employee.prototype.calculateSalary = function() {
-  let min, max;
-  switch (this.level) {
-      case 'Senior':
-          min = 1500;
-          max = 2000;
-          break;
-      case 'Mid-Senior':
-          min = 1000;
-          max = 1500;
-          break;
-      case 'Junior':
-          min = 500;
-          max = 1000;
-          break;
-      default:
-          min = 0;
-          max = 0;
-          break;
+Drink.prototype.claculatPrice = function(min,max){
+    this.price= getRandomInt(min,max);
+}
+
+function getRandomInt(min,max){
+    return Math.floor(Math.random()*max);
+}
+
+
+Drink.prototype.render = function(){
+ //const test = document.getElementsByTagName('section');
+ //console.log(test);
+ 
+    const container = document.getElementById('DDDDD');
+ console.log(container);
+
+   const divEl= document.createElement('div')
+   container.appendChild(divEl);
+
+   const drinkName =document.createElement('h4');
+   divEl.appendChild(drinkName);
+   drinkName.textContent = this.name;
+
+   const ing= document.createElement('p');
+    divEl.appendChild(ing);
+    ing.textContent= this.ingre; 
+
+    const priceE1 =document.createElement('h1');
+    divEl.appendChild(priceE1);
+    priceE1.textContent = this.price;
+
+    const img = document.createElement('img');
+    divEl.appendChild(img);
+    img.setAttribute('src',this.imgPath);
+    img.width="";
+    img.height="";
+
+    const pEl = document.createElement('p');
+    divEl.appendChild(pEl);
+    if(this.isCold && this.isHot){
+        pEl.textContent = `${this.name} is hot and col`;
+    }else if(this.isCold){
+       pEl.textContent =`${this.name} is cold`;
+    }else {
+        pEl.textContent =`${this.name} is hot`;
+    }
+    
+    const ulE1 =document.createElement('ul');
+    divEl.appendChild(ulE1);
+    ulE1.textContent= "ingre";
+
+
+     const ingArr =this.ingre.split(',');
+       for(let i= 0;i< ingArr.length;i++){
+        const liE1= document.createElement('li');
+        ulE1.appendChild(liE1);
+        liE1.textContent = ingArr[i];
+       }
+
+
+
+}
+
+/*let newDrink = new Drink("latte","milk,water","https://www.bmw-me.com/content/dam/bmw/common/home/teaser/bmw-3-series-sedan-m-automobiles-hometeaser-1680x756.jpg.asset.1627481367711.jpg",true,true);
+newDrink.claculatPrice(1,5);
+newDrink.render();
+
+let newDrink2 = new Drink("espresso","coffee,water","",true,true);
+newDrink2.claculatPrice(1,5);
+newDrink2.render();
+
+let drinkForm =document.getElementById("drinkForm");
+drinkForm.addEventListener('submit',addNewDrinkHandler);
+
+function addNewDrinkHandler(event){
+    event.preventDefault();
+    console.log(event);
+    let drinkName =event.target.name.value;
+    let ingread =event.target.Ingreadients.value;
+    let img =event.target.imgUrl.value;
+    let isCold =event.target.isCold.checked;
+    let isHot =event.target.isHot.checked;
+    
+    let newDrink = new Drink(drinkName,ingread,img,isCold,isHot);
+    newDrink.claculatPrice(1,10);
+    newDrink.render();
+
+}*/
+// Employee class
+/*class Employee {
+    constructor(fullName, department, level, imageUrl, id) {
+      this.fullName = fullName;
+      this.department = department;
+      this.level = level;
+      this.imageUrl = imageUrl;
+      this.id = id;
+    }
+  
+    // Render prototype function
+    render() {
+      const container = document.getElementById("employeeContainer");
+      
+      const card = document.createElement("div");
+      card.classList.add("employee-card");
+      container.appendChild(card);
+      
+  
+      const image = document.createElement("img");
+      image.src = this.imageUrl;
+      image.alt = `src,${this.fullName}'s photo`;
+      card.appendChild(image);
+  
+      const name = document.createElement("h4");
+      name.textContent = this.fullName;
+      card.appendChild(name);
+  
+      const department = document.createElement("p");
+      department.textContent = `Department: ${this.department}`;
+      card.appendChild(department);
+  
+      const level = document.createElement("p");
+      level.textContent = `Level: ${this.level}`;
+      card.appendChild(level);
+  
+      const id = document.createElement("p");
+      id.textContent = `ID: ${this.id}`;
+      card.appendChild(id);
+    }
   }
-  this.salary = Math.floor(Math.random() * (max - min + 1)) + min;
-  this.netSalary = this.salary * (1 - 0.075);
+  
+  // Function for generating unique four digits employee id number
+  function generateEmployeeId() {
+    return Math.floor(1000 + Math.random() * 9000);
+  }
+  
+  // Event listener for getting data from form
+  let form = document.getElementById("employeeForm");
+  form.addEventListener('submit', newHE);
+  function newHE(event){
+    event.preventDefault();
+    const fullName = event.target.fullName.value;
+    const department = event.target.department.value;
+    const level = event.target.level.value;
+    const imageUrl = event.target.imageUrl.value;
+    const id = generateEmployeeId();
+    
+    const employee = new Employee(fullName, department, level,imageUrl, id);
+    employee.render();
+  }*/
+let employees = JSON.parse(localStorage.getItem("employees")) || [];
+class Employee {
+  constructor(fullName, department, level, imageUrl, id) {
+    this.fullName = fullName;
+    this.department = department;
+    this.level = level.toLowerCase();
+    this.imageUrl = imageUrl;
+    this.id = id;
+    this.salery = 0;
+    employees.push(this);
+  }
+    salary1(){
+      switch (this.level) {
+        case "junior":
+          this.salery = Math.floor(Math.random() * (1000 - 500+1)) + 500;
+          break;
+        case "mid-senior":
+          this.salery = Math.floor(Math.random() * (1500 - 1000+1)) + 1000;
+          break;
+        case "senior":
+          this.salery = Math.floor(Math.random() * (2000 - 1500+1)) + 1500;
+          break;
+        default:
+          break;
+      }
+      return this.salery;
+    }
+  
 }
 
+// Render prototype function
+function render() {
+  const container = document.getElementById("employeeContainer");
+  container.innerHTML = '';
 
-Employee.prototype.render = function() {
-  /*document.write(`
-  <table border="1" id="table_width">
-    <tr>
-      <td>Name:</td>
-      <td>${this.fullName}</td>
-    </tr>
-    <tr>
-      <td>Department:</td>
-      <td>${this.department}</td>
-    </tr>
-    <tr>
-      <td>Level:</td>
-      <td>${this.level}</td>
-    </tr>
-    <tr>
-      <td>Salary:</td>
-      <td>${this.salary}</td>
-    </tr>
-    <tr>
-      <td>Image:</td>
-      <td><img src="${this.imageUrl}"/></td>
-    </tr>
-  </table>
-`);*/
-document.write(`<h5>Employee ID: ${this.id}</h5>\tFull Name: ${this.fullName}\tDepartment: ${this.department}\tLevel: ${this.level}`);
-};
+  for (let i = 0; i < employees.length; i++) {
+    const card = document.createElement("div");
+    card.classList.add("employee-card");
+    container.appendChild(card);
 
-let employees = [
-  new Employee(1000, 'Ghazi Samer', 'Administration', 'Senior', '', 0),
-  new Employee(1001, 'Lana Ali', 'Finance', 'Senior', '', 0),
-  new Employee(1002, 'Tamara Ayoub', 'Marketing', 'Senior', '', 0),
-  new Employee(1003, 'Safi Walid', 'Administration', 'Mid-Senior', '', 0),
-  new Employee(1004, 'Omar Zaid', 'Development', 'Senior', '', 0),
-  new Employee(1005, 'Rana Saleh', 'Development', 'Junior', '', 0),
-  new Employee(1006, 'Hadi Ahmad', 'Finance', 'Mid-Senior', '', 0)
-];
+    const image = document.createElement("img");
+    image.src = employees[i].imageUrl;
+    image.alt = `src,${employees[i].fullName}'s photo`;
+    card.appendChild(image);
 
-for (let i = 0; i < employees.length; i++) {
-  employees[i].calculateSalary();
-  employees[i].render();
+    const name = document.createElement("h4");
+    name.textContent = employees[i].fullName;
+    card.appendChild(name);
+
+    const department = document.createElement("p");
+    department.textContent = `Department: ${employees[i].department}`;
+    card.appendChild(department);
+
+    const level = document.createElement("p");
+    level.textContent = `Level: ${employees[i].level}`;
+    card.appendChild(level);
+
+    const id = document.createElement("p");
+    id.textContent = `ID: ${employees[i].id}`;
+    card.appendChild(id);
+
+    const salery= document.createElement("p");
+    salery.textContent = `salery ${employees[i].salery}$`;
+    card.appendChild(salery);
+
+  }
+
+
+
+  
 }
+
+function generateEmployeeId() {
+  return Math.floor(1000 + Math.random() * 9000);
+}
+
+let form = document.getElementById("employeeForm");
+form.addEventListener('submit', newHE);
+function newHE(event) {
+  event.preventDefault();
+  const fullName = event.target.fullName.value;
+  const department = event.target.department.value;
+  const level = event.target.level.value;
+  const imageUrl = event.target.imageUrl.value;
+  const id = generateEmployeeId();
+
+  const employee = new Employee(fullName, department, level, imageUrl, id);
+  employee.salary1();
+  localStorage.setItem("employees", JSON.stringify(employees));
+  render();
+}
+
+render();
